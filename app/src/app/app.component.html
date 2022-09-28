@@ -1,0 +1,41 @@
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#"><img src="./assets/images/logo.png"
+                height="46px"></a><button data-bs-toggle="collapse" data-bs-target="#navcol-1"
+            class="navbar-toggler"><span class="visually-hidden">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page landing-page">
+    <section class="clean-block">
+        <div class="container">
+          <div class="row mt-5 mb-5">
+            <div class="col-12">
+                <h2><a class="btn" routerLink="..">&lt;</a> <strong>¡Hola!&nbsp;</strong>{{title}}<br></h2>
+            </div>
+            <div class="col"><span>{{subtitle}}</span></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+                    <div class="alert alert-{{alert.type}} alert-dismissible {{!alert.type?'d-none':''}}" role="alert">
+                        <div class="alert-icon">
+                            <i class="far fa-fw fa-bell"></i>
+                        </div>
+                        <div class="alert-message">
+                            <strong>{{alert.title}}!</strong> {{alert.message}}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="drawAlert({})"></button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
+        </div>
+    </section>
+</main>

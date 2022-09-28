@@ -1,0 +1,78 @@
+<form #form="ngForm" autocomplete="off" *ngIf="service" (submit)="onSubmit(form)">
+    <div class="row">
+        <div class="col-5 offset-1">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div class="card border-0">
+                        <div class="card-body border text-start" style="background: var(--bs-green);border-radius: 2rem;">
+                            <h4 style="color: var(--bs-card-bg);" class="text-center card-title mt-3 mb-4">Imágen perfil</h4>
+                            <div class="row">
+                                <div style="height: 15rem;" class="col-8 offset-2 mb-4">
+                                    <img class="rounded-circle border border-5 border-white" id="photo" style="width: 100%;height: 100%;" src="">
+                                </div>
+
+                                <div class="col-8 offset-2 mb-4">
+                                    <div class="input-group btn-group">
+                                        <label type="button" class="btn btn-light">
+                                            Cargar<i class="fas fa-cloud-upload-alt"></i>
+                                            <input type="file" class="d-none" (change)="changePhoto($event)" accept="image/jpeg,image/jpg,image/png" [disabled]="waiting">
+                                        </label>
+                                        <button type="button" class="btn btn-danger cancel {{!photo?'d-none':''}}" (click)="deletePhoto();"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-7">
+                    <div class="card border-0">
+                        <div class="card-body text-start border-1">
+                            <h2 class="text-start card-title mb-0">
+                                <strong>Tu información</strong>
+                            </h2>
+                            <div class="row">
+                                <div class="col">
+                                    <span>Completa la siguiente información para completar tu perfil<br><br></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group mb-3">
+                                        <input type="text" class="form-control" name="name" placeholder="Nombre*" required #name="ngModel" [(ngModel)]="service.name" [disabled]="waiting">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <select class="form-control" placeholder="Pasatiempo favorito" name="hobby" #hobby="ngModel" [(ngModel)]="service.hobby" [disabled]="waiting">
+                                            <option value="0">Pasatiempo favorito</option>
+                                            <option value="1">1&nbsp;-&nbsp;Jugar Fútbol</option>
+                                            <option value="2">2&nbsp;-&nbsp;Jugar basquetball</option>
+                                            <option value="3">3&nbsp;-&nbsp;Jugar tennis</option>
+                                            <option value="4">4&nbsp;-&nbsp;Jugar Voleibol</option>
+                                            <option value="5">5&nbsp;-&nbsp;Jugar Fifa</option>
+                                            <option value="6">6&nbsp;-&nbsp;Jugar Videojuegos</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="date" class="form-control" id="birthday" name="birthday" required #birthday="ngModel" [(ngModel)]="service.birthday" [disabled]="waiting" (change)="changeDocument()">
+                                        <div class="input-group-append">
+                                            <label class="input-group-text" style="border-radius: unset;" for="birthday">📅</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <input type="text" class="form-control" name="document" placeholder="{{placeHolderDocument}}*" #document="ngModel" [(ngModel)]="service.document" [disabled]="waiting" (keyup)="changeDocument()">
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-lg btn-secondary" [disabled]="waiting">Continuar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
